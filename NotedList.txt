@@ -2,7 +2,7 @@
 Notulensi : Inventory EOQ & ROP
 ####################################
 
-Aplikasi yang di buat menggunakan technologi PHP 8
+Aplikasi yang di buat menggunakan technologi PHP 7
 dengan framework Codeigniter 3.11
 
 ####################################
@@ -16,10 +16,6 @@ Password : superadmin
 Role as Admin
 Username : admin
 Password : admin
-
-Role as Barista
-Username : barista
-Password : barista
 
 ####################################
 Penjelasan Code : Inventory EOQ & ROP

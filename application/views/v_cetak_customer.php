@@ -27,8 +27,26 @@
 <div class="col-lg-12">
     <div class="card m-b-30">
         <div class="card-body">
-            <p>KAWA COFFEE<br>Cetak pada Tgl : <?php echo date('Y-m-d')?></p>
-            <table id="customers" class="" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size:12px;">
+                <?php if (@$export['excel']): ?>
+                <table align="left" border="1">
+                    <thead>
+                        <tr>
+                            <th>
+                                TB. SONY BAJA
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Cetak pada Tgl : <?php echo date('Y-m-d') ?>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <br>
+            <?php else: ?>
+                <p>TB. SONY BAJA<br>Cetak pada Tgl : <?php echo date('Y-m-d') ?></p>
+            <?php endif; ?>
+              <table border="1" align="center" id="customers" class="" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size:12px;">
                 <thead>
                 <tr>
                     <th>No</th>
@@ -42,17 +60,17 @@
                 <tbody>
                 <?php $no = 1; foreach ($get_customer as $val) { ?>
                     <tr>
-                        <td><?php echo $no++; ?></td>
-                        <td><?php echo $val->kode_customer ?></td>
-                        <td><?php echo $val->nama_customer ?></td>
-                        <td><?php echo $val->alamat_customer ?></td>
-                        <td><?php echo $val->no_hp;?></td>
-                        <td><?php echo $val->email;?></td>
+                        <td align="center"><?php echo $no++; ?></td>
+                        <td align="center"><?php echo $val->kode_customer ?></td>
+                        <td align="center"><?php echo $val->nama_customer ?></td>
+                        <td align="center"><?php echo $val->alamat_customer ?></td>
+                        <td align="center"><?php echo $val->no_hp;?></td>
+                        <td align="center"><?php echo $val->email;?></td>
                     </tr>
                 <?php }?>
                 </tbody>
             </table>
-            
+
         </div>
     </div>
 </div> <!-- end col -->

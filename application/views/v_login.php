@@ -6,7 +6,7 @@
   <title><?= $title ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-  <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/favicon.ico">
+  <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/log/icon.jpeg">
 </head>
 <body>
  <section class="h-100 w-100" style="box-sizing: border-box; background-color: #f5f5f5">
@@ -33,6 +33,7 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+
     }
 
     .content-4-1 .right {
@@ -113,8 +114,8 @@
 
     .content-4-1 .btn-fill {
       font: 500 1.25rem/1.75rem Poppins, sans-serif;
-      background-image: linear-gradient(rgba(91, 203, 173, 1),
-        rgba(39, 194, 153, 1));
+       background-color: blue;
+
       padding: 0.75rem 1rem;
       margin-top: 2.25rem;
       border-radius: 0.75rem;
@@ -122,7 +123,7 @@
     }
 
     .content-4-1 .btn-fill:hover {
-      background-image: linear-gradient(#2ec49c, #2ec49c);
+       background-color: skyblue;
       transition: 0.5s;
     }
 
@@ -179,20 +180,20 @@
       }
     }
   </style>
-  <div class="content-4-1 d-flex flex-column align-items-center h-100 flex-lg-row"
+  <div class="content-4-1 d-flex bg-primary flex-column align-items-center h-100 flex-lg-row"
   style="font-family: 'Poppins', sans-serif">
-  <div class="position-relative d-none d-lg-block h-100 width-left">
+  <div class="position-relative d-none d-lg-block h-100 width-left" >
     <img class="position-absolute img-fluid centered"
-    src="<?php echo base_url()?>assets/images/log/icon.png"
-    style="width: 50%;"
+    src="<?php echo base_url()?>assets/images/log/logo_dark.png"
+    style="width: 80%;"
     alt="" />
   </div>
   <div class="d-flex mx-auto align-items-left justify-content-left width-right mx-lg-0">
     <div class="right mx-lg-0 mx-auto">
       <div class="align-items-center justify-content-center d-lg-none d-flex">
         <img class="img-fluid"
-        src="<?php echo base_url()?>assets/images/log/icon.png"
-        style="width: 50%;"
+        src="<?php echo base_url()?>assets/images/log/logo_dark.png"
+        style="width: 80%;"
         alt="" />
       </div>
 
@@ -212,7 +213,7 @@
       <?php endif ?>
       <form style="margin-top: 1.5rem" method="post" action="<?php echo base_url('C_login/proses_login')?>">
         <div style="margin-bottom: 1.75rem">
-          <label for="" class="d-block input-label">Email Address</label>
+          <label for="" class="d-block input-label">Username</label>
           <div class="d-flex w-100 div-input">
             <svg class="icon" style="margin-right: 1rem" width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -244,8 +245,8 @@
       </div>
     </div>
   </div>
-  
-  <button class="btn btn-fill text-white d-block w-100" type="submit">
+  <br>
+  <button class="btn btn-primary text-white d-block w-100" type="submit">
     Log In To My Account
   </button>
 </form>

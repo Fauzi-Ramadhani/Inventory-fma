@@ -2,14 +2,14 @@
     <div class="card m-b-30">
         <div class="card-body">
 
-            <h4 class="mt-0 header-title">Data Barang Masuk</h4>
+            <h4 class="mt-0 header-title">Data Transaksi Pembelian</h4>
 
             <table id="datatable1" class="table table-bordered " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID Tr Masuk</th>
-                        <th>Tgl Tr Masuk</th>
+                        <th>ID Tr Pembelian</th>
+                        <th>Tgl Tr Pembelian</th>
                         <th>Ket</th>
                         <th>Input Oleh</th>
                         <th>Action</th>

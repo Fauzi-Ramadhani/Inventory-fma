@@ -70,7 +70,5 @@ $route['lap/customer'] = "C_laporan/lap_customer";
 $route['lap/barang'] = "C_laporan/lap_barang";
 $route['lap/trmasuk'] = "C_laporan/lap_tr_barang_masuk";
 $route['lap/trkeluar'] = "C_laporan/lap_tr_barang_keluar";
-$route['lap/eoq'] = "C_laporan/eoq";
-$route['lap/eoq/form']['GET'] = "C_laporan/eoq_form";
-$route['lap/eoq/form']['POST'] = "C_laporan/eoq_form_action";
-
+$route['lap/fma'] = "C_laporan/forecasting_moving_average";
+$route['lap/forecasting-moving-average/hitung']['POST'] = "C_laporan/hitung_fma";

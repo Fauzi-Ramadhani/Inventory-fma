@@ -38,7 +38,7 @@
         }
     </style>
 </head>
-<?php  
+<?php
     if (@$export['excel']) {
         header("Content-Disposition: attachment; filename=Laporan Penjualan.xls");
         header("Content-Type: application/vnd.ms-excel");
@@ -48,7 +48,7 @@
     <?php foreach ($get_header as $val) { ?>
     <table width="100%">
         <tr>
-            <td colspan="2"><h2>KAWA COFFEE</h2></td>
+            <td colspan="2"><h2>TB. SONY BAJA</h2></td>
             <td rowspan="2" width="200" valign="top">
                 <table width="100%">
                     <tr>
@@ -67,19 +67,19 @@
                 <br>
                 <br>
                 <b>Bill To :</b><br>
-                
+
             </td>
             <td>
                 <br>
                 <br>
                 <b>Ship To :</b><br>
-                
-            </td>    
+
+            </td>
         </tr>
     </table>
     <?php } ?>
     <div class="spasing">
-        
+
     </div>
     <p>Rincian Pembelian</p>
     <table id="customers">
@@ -91,34 +91,21 @@
             <th>Harga Satuan (Rp.)</th>
             <th>Harga Total (Rp.)</th>
         </tr>
-        <?php $no = 1;  $total = 0;$sum=0; foreach ($get_detail as $val_detail) {?>
+        <?php $no = 1; $total = 0; foreach ($barang as $bar) :?>
+            <?php $total += $bar->harga*$bar->jumlah_beli ?>
         <tr>
             <td><?php echo $no++; ?></td>
-            <td><?php echo $val_detail->kd_barang; ?></td>
-            <td><?php echo $val_detail->nama_barang; ?></td>
-            <td><?php echo $val_detail->jumlah_beli; ?></td>
-            <td><?php foreach ($get_detail_id as $valu) {
-               if($val_detail->id_tr_k == $valu->id_tr_k AND $val_detail->kd_barang == $valu->kd_barang){
-                   $harga = $valu->harga;
-                   echo number_format($harga,0,",",".");
-               }
-           }?></td>
-            <td><?php 
-             foreach ($get_detail_id as $valu) {
-               
-                if($val_detail->id_tr_k == $valu->id_tr_k AND $val_detail->kd_barang == $valu->kd_barang){
-                    $harga = $valu->harga;
-                    $total = $valu->harga * $val_detail->jumlah_beli;
-                    $sum += $total;
-                }
-            }
-            echo number_format($total,0,",",".");?></td>
+            <td><?php echo $bar->kd_barang; ?></td>
+            <td><?php echo $bar->nama_barang; ?></td>
+            <td><?php echo $bar->jumlah_beli; ?></td>
+            <td><?php echo number_format($bar->harga,0,",","."); ?></td>
+            <td><?php echo number_format($bar->harga * $bar->jumlah_beli); ?></td>
         </tr>
-        <?php } ?>
+        <?php endforeach; ?>
         <tr>
             <td colspan="5">Sub Total Harga</td>
-            <td><?php 
-                    echo number_format($sum,0,",",".");        
+            <td><?php
+                    echo number_format($total,0,",",".");
                 ?>
             </td>
         </tr>

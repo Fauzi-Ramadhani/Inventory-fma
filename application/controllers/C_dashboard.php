@@ -1,6 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+ini_set('display_errors','Off');
 class C_dashboard extends CI_Controller {
 
     
@@ -30,6 +30,12 @@ class C_dashboard extends CI_Controller {
         $data['count_barang'] = $this->M_barang->count_barang();
         $data['count_barang_masuk'] = $this->M_barang->count_barang_masuk();
         $data['count_barang_keluar'] = $this->M_barang->count_barang_keluar();
+
+        // Data detail untuk modal
+        $data['data_supplier'] = $this->supplier->get_supplier();
+        $data['data_barang'] = $this->M_barang->get_barang();
+        $data['data_pembelian'] = $this->M_barang->get_tr_barang();
+        $data['data_penjualan'] = $this->M_barang->get_tr_jual_barang();
 
         $resBarang = [];
 

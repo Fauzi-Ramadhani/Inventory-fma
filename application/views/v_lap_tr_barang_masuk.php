@@ -30,8 +30,8 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>ID Tr Masuk</th>
-                    <th>Tgl Tr Masuk</th>
+                    <th>ID Tr Pembelian</th>
+                    <th>Tgl Tr Pembelian</th>
                     <th>Ket</th>
                     <th>Input Oleh</th>
                 </tr>

@@ -1,0 +1,50 @@
+# Render.com Configuration for CodeIgniter 3 Inventory Management System
+# This configuration file helps automate deployment to Render.com
+
+services:
+  - type: web
+    name: inventory-fma
+    runtime: php
+    buildCommand: "composer install --no-dev"
+    startCommand: "php -S 0.0.0.0:${PORT} index.php"
+    envVars:
+      - key: CI_ENV
+        value: production
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: inventory-fma-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: inventory-fma-db
+          property: port
+      - key: DATABASE_USER
+        fromDatabase:
+          name: inventory-fma-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: inventory-fma-db
+          property: password
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: inventory-fma-db
+          property: database
+    autoDeploy: true
+    region: singapore
+
+  - type: pserv
+    name: inventory-fma-db
+    runtime: mysql
+    version: 8.0
+    disk:
+      name: inventory-fma-db-disk
+      mountPath: /var/lib/mysql
+      sizeGB: 5
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+      - key: MYSQL_DATABASE
+        value: ci_inventory
+    autoDeploy: false
+    region: singapore

@@ -31,8 +31,8 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>ID Tr Keluar</th>
-                    <th>Tgl Tr Keluar</th>
+                    <th>ID Tr Penjualan</th>
+                    <th>Tgl Tr Penjualan</th>
                     <th>Ket</th>
                     <th>Input Oleh</th>
                     <th>Jumlah</th>

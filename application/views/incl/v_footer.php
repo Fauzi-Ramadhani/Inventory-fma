@@ -1,3 +1,3 @@
-<footer class="footer">
-	© <?= date('Y') ?> KAWA COFFEE <span class="d-none d-md-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Codeigniter 3.11.</span>
+<footer class="footer text-black">
+	© <?= date('Y') ?> All Rights Reserved <span class="d-none d-md-inline-block"> - TOKO BANGUNAN SONY BAJA</span>
 </footer>

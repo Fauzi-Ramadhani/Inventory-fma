@@ -43,9 +43,9 @@
                     <label>Level</label>
                     <select class="form-control" required="" name="level" id="level">
                         <option value="">-- Silahkan Pilih --</option>
-                        <option value="Super Admin">Super Admin</option>
+                        <option value="Pemilik">Pemilik</option>
                         <option value="Admin">Admin</option>
-                        <option value="Barista">Barista</option>
+                        <!-- <option value="Barista">Barista</option> -->
                     </select>
                 </div>
             

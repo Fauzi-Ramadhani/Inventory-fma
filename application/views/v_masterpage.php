@@ -9,7 +9,7 @@
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/log/icon.png">
+        <link rel="shortcut icon" href="<?php echo base_url()?>assets/images/log/logo_dark.png">
 
     
 
@@ -31,7 +31,7 @@
     </head>
 
 
-    <body class="fixed-left">
+    <body class="fixed-left ">
 
         <!-- Loader -->
         <div id="preloader">

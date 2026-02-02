@@ -52,7 +52,7 @@
                     <input type="number" class="form-control" required placeholder="5" id="persentasi" name="persentasi"/>
                 </div>
                 <div class="form-group">
-                    <label>Ket Barang</label>
+                    <label>Ket Dan Jenis Barang</label>
                     <textarea class="form-control" required placeholder="Terbuat Dari Bahan Bagus" id="ket_barang" name="ket_barang"></textarea>
                 </div>
             

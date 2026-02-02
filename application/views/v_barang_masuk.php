@@ -7,14 +7,14 @@
         <div class="card-body">
             <h4 class="mt-0 header-title" id="title"></h4>
 
-            <?php 
+            <?php
                 if (@$this->session->flashdata('msg')) {
                     echo $this->session->flashdata('msg');
                     $this->session->unset_userdata('msg');
                 }
             ?>
             <form class="" action="<?php echo base_url()?>C_barang/save_masuk" method="post" id="frm_data_barang">
-                <div class="row">                
+                <div class="row">
                     <input type="hidden" name="status" id="s" value="baru">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <input type="hidden" id="rows" value="0">
                 <table id="data-barang" class="table table-bordered">
                     <tr>
@@ -70,20 +70,20 @@
                         Simpan <span class="badge badge-primary"></span>
                 </button>
             </form>
-            
-            
+
+
             <!-- <button id="tombol-edit">Klik</button>
             <button id="tombol-balikin">Balikin</button> -->
-            
+
 
         </div>
     </div>
 </div> <!-- end col -->
 
 
-            
+
 <script>
-    
+
     $(document).ready(function() {
         $('#id_supplier').select2();
         // function renderSelect2(){
@@ -109,11 +109,11 @@
             });
           };
         }(jQuery));
-    
+
         $("#btn-tambah").click(function(){
             var count = parseInt($("#rows").val());
             var count_next = count + 1;
-            
+
             $("#data-barang").append(
               "<tr>"+
                 "<td>"+
@@ -130,12 +130,12 @@
                 "<td><input type='text' name='harga[]' id='harga_"+count_next+"' class='form-control' readonly></td>"+
                 "<td><input type='text' name='jumlah_masuk[]' id='jumlah_masuk_"+count_next+"' class='form-control'></td>"+
                 "<td><button type='button' class='btn btn-sm btn-danger del'>Del</button></td>"+
-              "</tr>"  
+              "</tr>"
             );
             $("#jumlah_masuk_"+count_next).inputFilter(function(value) {
             return /^-?\d*$/.test(value); });
             $("#rows").val(count_next);
-            
+
              $('#kd_barang_label_'+count_next).autocomplete({
                     // source: ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"],
                     // minLength: 1,
@@ -150,8 +150,8 @@
                     // source: "<?php echo base_url('C_barang/get_auto_kd/?');?>",
                     // select: function (event, ui) {
                     //     $('#kd_barang_'+count_next).val(ui.item.kd_barang);
-                    //     $('#satuan_'+count_next).val(ui.item.satuan); 
-                    //     $('#harga_'+count_next).val(ui.item.harga_barang); 
+                    //     $('#satuan_'+count_next).val(ui.item.satuan);
+                    //     $('#harga_'+count_next).val(ui.item.harga_barang);
                     //}
 
                     source: function( request, response ) {
@@ -170,7 +170,7 @@
                       });
                     },
                     select: function (event, ui) {
-                      
+
                         if (ui.item) {
                             console.log("ui.item.value: " + ui.item);
                         } else {
@@ -179,17 +179,17 @@
                         console.log("this.value: " + this.value);
                         //Set selection
                          $('#kd_barang_'+count_next).val(ui.item.value);
-                         $('#satuan_'+count_next).val(ui.item.satuan).attr('readonly',true); 
-                         $('#harga_'+count_next).val(ui.item.harga_barang).attr('readonly',true); 
+                         $('#satuan_'+count_next).val(ui.item.satuan).attr('readonly',true);
+                         $('#harga_'+count_next).val(ui.item.harga_barang).attr('readonly',false);
                          $('#kd_barang_label_'+count_next).val(ui.item.label);
-                        
+
                       return false;
                     }
              });
 
       });
 
-     
+
 
       $("#data-barang").on('click','.del',function(){
           $(this).parent().parent().remove();

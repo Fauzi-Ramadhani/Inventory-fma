@@ -1,4 +1,52 @@
+# CodeIgniter.htaccess for Production
+# Prevent directory listing
+Options -Indexes
+
+# Follow symbolic links
+Options +FollowSymLinks
+
+# Turn on URL rewriting
 RewriteEngine On
+
+# If your website is in a subfolder, uncomment and adjust this line:
+# RewriteBase /your-subfolder/
+
+# Force HTTPS (Recommended for production)
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Handle Front Controller...
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
+# Prevent access to sensitive files
+<Files "*.sql">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "*.json">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files ".env">
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Protect against clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
+    Header always append X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always append X-XSS-Protection "1; mode=block"
+    
+    # Content Security Policy (adjust as needed)
+    Header always append Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval'"
+</IfModule>

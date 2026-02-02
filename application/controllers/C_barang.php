@@ -1,9 +1,9 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_barang extends CI_Controller {
 
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -13,7 +13,7 @@ class C_barang extends CI_Controller {
         $this->load->model('M_barang');
         $this->load->model('M_supplier');
     }
-    
+
 
     public function index()
     {
@@ -56,7 +56,7 @@ class C_barang extends CI_Controller {
         }else{
             $data['data'] = "Gagal";
             echo json_encode($data);
-        } 
+        }
     }
 
     public function get_data_all()
@@ -75,7 +75,7 @@ class C_barang extends CI_Controller {
           'ket_barang' => $post['ket_barang'],
           'leadtime' => $post['leadtime'],
           'percentage_biaya_simpan' => $post['persentasi'],
-          'biaya_simpan' => (double)(($post['harga_barang']*((int)$post['persentasi']))/100)  
+          'biaya_simpan' => (double)(($post['harga_barang']*((int)$post['persentasi']))/100)
         );
 
         $update = $this->M_barang->update_barang($set_data,$post['kd_barang']);
@@ -99,7 +99,7 @@ class C_barang extends CI_Controller {
 
     public function barang_masuk()
     {
-        $data['title'] = "Barang Masuk";
+        $data['title'] = "Transaksi Pembelian Barang";
         $data['content'] = "v_barang_masuk";
         $data['auto'] = $this->M_barang->get_auto_number();
         $data['get_barang'] = $this->M_barang->get_barang();
@@ -115,16 +115,16 @@ class C_barang extends CI_Controller {
         $result = array();
         $id_tr_m = $post['id_tr_m'];
         $id_login = $post['id_login'];
-        
-        foreach($post['kd_barang'] as $key =>$val){   
-            $kd_barang = $post['kd_barang'][$key];     
+
+        foreach($post['kd_barang'] as $key =>$val){
+            $kd_barang = $post['kd_barang'][$key];
             $qr = $this->M_barang->get_barang_kd($kd_barang);
             foreach($qr as $val1){
                 $result_stok = array(
                     'stok_awal' =>  $val1->stok_awal + $post['jumlah_masuk'][$key]
                 );
                 $this->M_barang->update_barang_id($result_stok,$kd_barang);
-            };    
+            };
             $result[] = array(
                 'id_tr_m' => $id_tr_m,
                 'kd_barang' => $post['kd_barang'][$key],
@@ -155,14 +155,14 @@ class C_barang extends CI_Controller {
                 <strong>Failed !</strong> Terjadi Kesalahan Membuat Menambahkan Barang !
             </div>");
         };
-        
+
         redirect('barang/masuk');
-        
+
     }
 
     public function tr_barang_masuk()
     {
-        $data['title'] = "Data Transaksi Barang Masuk";
+        $data['title'] = "Data Transaksi Pembelian";
         $data['content'] = "v_tr_barang_masuk";
         $data['get_tr'] = $this->M_barang->get_tr_barang();
         $this->load->view('v_masterpage',$data);
@@ -192,22 +192,22 @@ class C_barang extends CI_Controller {
         $ket_tr_k = $post['ket_tr_k'];
 
         //Metode Fifo
-        foreach($post['kd_barang'] as $key =>$val){   
+        foreach($post['kd_barang'] as $key =>$val){
             $a = "";
             $kd_barang = $post['kd_barang'][$key];
             $jumlah_beli = $post['jumlah_masuk'][$key];
             $harga_beli = $post['harga'][$key];
 
-            
+
             $qr = $this->M_barang->get_sum_barang_kd($kd_barang);
             $qr2 = $this->M_barang->get_barang_by_kd($kd_barang);
-            
+
             foreach($qr as $val1){
                     $stok_all = $val1->total;
-                    
+
                     //$this->M_barang->update_barang_id($result_stok,$kd_barang);
-            };  
-            
+            };
+
             if($jumlah_beli <= $stok_all){
                 foreach ($qr2 as $val) {
                     $tgl = $val->tgl_masuk;
@@ -217,23 +217,23 @@ class C_barang extends CI_Controller {
 
                     if($jumlah_beli > 0){
                         $temp = $jumlah_beli;
-                        
+
                         $jumlah_beli = $jumlah_beli - $stok;
-                       
+
                         if($jumlah_beli > 0){
                             $stok_update = 0;
                         }else{
                             $stok_update = $stok - $temp;
-                            
+
                         }
-                       
+
                         $set_data = array(
                             'jumlah_masuk' => $stok_update
                         );
                          $qr3 = $this->M_barang->update_barang_by_kd($kd_barang,$set_data,$tgl,$id_tr_m_detail);
                          $qr4 = $this->M_barang->insert_barang_tr_keluar_dtl($kd_barang,$stok,$stok_update,$harga_beli,$id_tr_k,$id_tr_m,$id_tr_m_detail);
-                        
-                        
+
+
                     }
 
                 };
@@ -245,10 +245,10 @@ class C_barang extends CI_Controller {
                         </div>");
                         redirect('barang/trpenjualan');
                         exit();
-            }  
-             
+            }
+
             $get_barang = $this->M_barang->get_barang_kd($kd_barang);
-                
+
             foreach ($get_barang as $val_barang) {
                     $stok_awal =  $val_barang->stok_awal;
                     $pemakaian = $val_barang->pemakaian;
@@ -276,7 +276,7 @@ class C_barang extends CI_Controller {
 
         $insert_header = $this->M_barang->insert_bkeluar_header($set_data_header);
 
-        
+
         if($insert_header){
             $this->session->set_flashdata("msg","
                         <div class='alert alert-success alert-dismissible fade show mb-0'>
@@ -290,15 +290,15 @@ class C_barang extends CI_Controller {
                 <strong>Failed !</strong> Terjadi Kesalahan Menjual Barang !
             </div>");
         };
-        
+
         redirect('barang/trpenjualan');
-        
-        
+
+
     }
 
     public function tr_barang_penjualan()
     {
-        $data['title'] = "Data Transaksi Barang Penjualan";
+        $data['title'] = "Data Transaksi Penjualan";
         $data['content'] = "v_tr_barang_penjualan";
         $data['get_penjualan'] = $this->M_barang->get_tr_jual_barang();
         $this->load->view('v_masterpage',$data);
@@ -322,17 +322,16 @@ class C_barang extends CI_Controller {
     public function get_data_tr($id_tr_m)
     {
         $qr = $this->M_barang->get_data_tr_m($id_tr_m);
-        
+
         echo json_encode($qr);
     }
 
     public function cetak_penjualan($id_tr_k)
     {
-       
+
         $mpdf = new \Mpdf\Mpdf();
         $data['get_header'] = $this->M_barang->get_header_by_id($id_tr_k);
-        $data['get_detail'] = $this->M_barang->get_detail($id_tr_k);
-        $data['get_detail_id'] = $this->M_barang->get_detail_id($id_tr_k);
+        $data['barang'] = $this->M_barang->get_detail_id($id_tr_k);
         $data['sum_detail'] = $this->M_barang->get_sum_detail_id($id_tr_k);
 		$html = $this->load->view('v_cetak_penjualan', $data, TRUE);
 		$mpdf->WriteHTML($html);
